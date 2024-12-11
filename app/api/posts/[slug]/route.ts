@@ -6,12 +6,13 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const post = await getPostBySlug(params.slug);
+    const decodedSlug = decodeURIComponent(params.slug);
+    const post = await getPostBySlug(decodedSlug);
     return NextResponse.json(post);
   } catch (error) {
     console.error('Error in API route:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch post' },
+      { error: error instanceof Error ? error.message : 'Failed to fetch post' },
       { status: 500 }
     );
   }

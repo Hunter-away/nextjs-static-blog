@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* code highlight style */
+@import 'highlight.js/styles/github.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -79,4 +81,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

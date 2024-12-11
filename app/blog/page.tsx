@@ -1,12 +1,13 @@
-import { buildFileTree } from '@/lib/utils/content';
+import { buildFileTree, getAllPosts } from '@/lib/utils/content';
 import { BlogContent } from '@/components/blog-content';
 
 export default async function BlogPage() {
   const fileTree = buildFileTree(process.cwd() + '/content');
+  const posts = await getAllPosts();
   
   return (
-    <div className="container mt-20">
-      <BlogContent fileTree={fileTree} />
+    <div>
+      <BlogContent fileTree={fileTree} initialPosts={posts} />
     </div>
   );
 }
